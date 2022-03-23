@@ -62,6 +62,18 @@ const timeline = [
   {
     events: [
       {
+        timestamp: "2022-01-24T13:12:42.055821Z",
+        description: "Order delivered again",
+        descriptionDetail: "14:00 - 16:00",
+        salesStatus: "ACTIVE",
+        status: "REDELIVERED"
+      } //major
+    ],
+    details: [{ label: "Address", value: "Pie Island" }]
+  },
+  {
+    events: [
+      {
         timestamp: "2022-01-23T17:32:42.055821Z",
         description: "Order stolen by postie",
         event: "Order stolen by postie",
@@ -95,10 +107,15 @@ const App = () => {
     <Timeline>
       {timeline.map(({ events, details }, idx) => {
         // should we just expose the EventBlocks to map them here?
+
+        // Add scope for prevEvents
+        const prevEvents = idx >= 1 ? timeline[idx - 1].events : [];
+
         return (
           <Timeline.Group
             isFirstGroupMajorOnly={isFirstGroupMajorOnly}
             events={events}
+            prevEvents={prevEvents}
             details={details}
             isFirst={idx === 0}
             isLast={idx === timeline.length - 1}
