@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { parseISO, isSameDay, isValid, format } from "date-fns";
-import styled from "@emotion/styled";
-import { EventBlock } from "./EventBlock";
-import { EventsBlock } from "./EventsBlock";
-import { DetailsBlock } from "./DetailsBlock";
-import { ExpandButtonBlock } from "./ExpandButtonBlock";
-import { TimelineDivider } from "./Dividers";
+import React, { useState } from 'react';
+import { parseISO, isSameDay, isValid, format } from 'date-fns';
+import styled from '@emotion/styled';
+import { EventBlock } from './EventBlock';
+import { EventsBlock } from './EventsBlock';
+import { DetailsBlock } from './DetailsBlock';
+import { ExpandButtonBlock } from './ExpandButtonBlock';
+import { TimelineDivider } from './Dividers';
 
 const formatDate = (timestamp, isMajor) =>
   isValid(parseISO(timestamp)) &&
-  format(parseISO(timestamp), isMajor ? "d MMM yyyy" : "d MMM");
+  format(parseISO(timestamp), isMajor ? 'd MMM yyyy' : 'd MMM');
 
 const formatTime = (timestamp) =>
-  isValid(parseISO(timestamp)) && format(parseISO(timestamp), "H:mm");
+  isValid(parseISO(timestamp)) && format(parseISO(timestamp), 'H:mm');
 
 const last = (array) => array[array.length - 1];
 
@@ -41,7 +41,7 @@ const EventsAndDetailsBlock = styled.div`
 `;
 
 const BlockBoundary = styled.div`
-  border-radius: ${({ top }) => (top ? "1rem 1rem 0 0" : "0 0 1rem 1rem")};
+  border-radius: ${({ top }) => (top ? '1rem 1rem 0 0' : '0 0 1rem 1rem')};
   background: #f3faff;
   height: 1rem;
   margin: 0;
@@ -56,15 +56,15 @@ const mapEventTitle = (event, idx, events) => {
       ...event,
       eventTitle: {
         title: status,
-        subhead: eventName
-      }
+        subhead: eventName,
+      },
     };
   }
 
   const { event: prevEventName, status: prevStatus } = events[idx - 1] || {};
 
-  let title = "";
-  let subhead = "";
+  let title = '';
+  let subhead = '';
 
   if (status !== prevStatus) {
     if (eventName !== prevEventName) {
@@ -78,19 +78,19 @@ const mapEventTitle = (event, idx, events) => {
   }
 
   if (title === subhead) {
-    subhead = "";
+    subhead = '';
   }
 
   return {
     ...event,
     eventTitle: {
       title,
-      subhead
-    }
+      subhead,
+    },
   };
 };
 
-const Group = ({ events, details, isFirst, isLast, isFirstEventMajorOnly }) => {
+const Group = ({ events, details, isFirst, isLast, isFirstGroupMajorOnly }) => {
   const [expanded, setExpanded] = useState(isFirst);
   const mappedEvents = events.map(mapDateAndTime).map(mapEventTitle);
 
@@ -98,7 +98,7 @@ const Group = ({ events, details, isFirst, isLast, isFirstEventMajorOnly }) => {
     <>
       {expanded && (
         <>
-          {!isFirstEventMajorOnly && (
+          {((isFirstGroupMajorOnly && !isFirst) || !isFirstGroupMajorOnly) && (
             <BlockBoundary top>{!isFirst && <TimelineDivider />}</BlockBoundary>
           )}
           <EventsAndDetailsBlock>
@@ -109,26 +109,26 @@ const Group = ({ events, details, isFirst, isLast, isFirstEventMajorOnly }) => {
                   .map((event, idx) => {
                     return (
                       <EventBlock
-                        isFirstEventMajorOnly={isFirstEventMajorOnly}
+                        isFirstGroupMajorOnly={isFirstGroupMajorOnly}
                         {...event}
                         isFirst={isFirst && idx === 0}
                       />
                     );
                   }),
-                <EventBlock />
+                <EventBlock />,
               ]}
             </EventsBlock>
 
             <DetailsBlock details={details} />
           </EventsAndDetailsBlock>
-          {!isFirstEventMajorOnly && (
+          {((isFirstGroupMajorOnly && !isFirst) || !isFirstGroupMajorOnly) && (
             <BlockBoundary>
               <TimelineDivider />
             </BlockBoundary>
           )}
         </>
       )}
-      {((isFirstEventMajorOnly && !isFirst) || !isFirstEventMajorOnly) && (
+      {((isFirstGroupMajorOnly && !isFirst) || !isFirstGroupMajorOnly) && (
         <ExpandButtonBlock
           expanded={expanded}
           setExpanded={setExpanded}
@@ -140,7 +140,7 @@ const Group = ({ events, details, isFirst, isLast, isFirstEventMajorOnly }) => {
         setExpanded={setExpanded}
         isFirst={isFirst}
       /> */}
-      {/* {!isFirstEventMajorOnly && (
+      {/* {!isFirstGroupMajorOnly && (
         <ExpandButtonBlock
           expanded={expanded}
           setExpanded={setExpanded}
@@ -149,7 +149,7 @@ const Group = ({ events, details, isFirst, isLast, isFirstEventMajorOnly }) => {
       )} */}
       <EventsBlock>
         <EventBlock
-          // isFirstEventMajorOnly={isFirstEventMajorOnly}
+          isFirstGroupMajorOnly={isFirstGroupMajorOnly}
           {...last(mappedEvents)}
           isLast={isLast}
           isFirst={isFirst}
