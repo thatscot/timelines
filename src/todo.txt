@@ -1,0 +1,5 @@
+- show status above event when it changes
+- show salesStatus (for subscription) or status (for visits/deliveries)
+  under every major event
+- update details divider to use new design
+- add icons to major events
