@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { Text } from '../../Spectrum';
-import { Marker } from './Marker';
-import { TimelineDivider, DetailsDivider } from './Dividers';
-import { EventTitle } from './EventTitle';
+import React from "react";
+import styled from "@emotion/styled";
+import { Text } from "../../Spectrum";
+import { Marker } from "./Marker";
+import { TimelineDivider, DetailsDivider } from "./Dividers";
+import { EventTitle } from "./EventTitle";
 
 const StyledSubheading = styled(Text.Subhead)`
   justify-self: end;
@@ -50,13 +50,16 @@ const EventBlock = ({
   isMajor,
   isFirst,
   isLast,
-  eventTitle,
+  eventTitle
 }) => {
-  console.log(description);
   return (
     <>
       <Date>{date}</Date>
-      <TimelineDivider isFirst={isFirst} isLast={isLast} isMajor={isMajor}>
+      <TimelineDivider
+        isFirst={isFirst}
+        isLast={isLast}
+        isFirstGroupMajorOnly={isFirstGroupMajorOnly}
+      >
         {description && (
           <Marker
             isFirstGroupMajorOnly={isFirstGroupMajorOnly}

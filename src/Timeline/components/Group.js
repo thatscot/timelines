@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { parseISO, isSameDay, isValid, format } from 'date-fns';
-import styled from '@emotion/styled';
-import { EventBlock } from './EventBlock';
-import { EventsBlock } from './EventsBlock';
-import { DetailsBlock } from './DetailsBlock';
-import { ExpandButtonBlock } from './ExpandButtonBlock';
-import { TimelineDivider } from './Dividers';
+import React, { useState } from "react";
+import { parseISO, isSameDay, isValid, format } from "date-fns";
+import styled from "@emotion/styled";
+import { EventBlock } from "./EventBlock";
+import { EventsBlock } from "./EventsBlock";
+import { DetailsBlock } from "./DetailsBlock";
+import { ExpandButtonBlock } from "./ExpandButtonBlock";
+import { TimelineDivider } from "./Dividers";
 
 const formatDate = (timestamp, isMajor) =>
   isValid(parseISO(timestamp)) &&
-  format(parseISO(timestamp), isMajor ? 'd MMM yyyy' : 'd MMM');
+  format(parseISO(timestamp), isMajor ? "d MMM yyyy" : "d MMM");
 
 const formatTime = (timestamp) =>
-  isValid(parseISO(timestamp)) && format(parseISO(timestamp), 'H:mm');
+  isValid(parseISO(timestamp)) && format(parseISO(timestamp), "H:mm");
 
 const last = (array) => array[array.length - 1];
 
@@ -41,7 +41,7 @@ const EventsAndDetailsBlock = styled.div`
 `;
 
 const BlockBoundary = styled.div`
-  border-radius: ${({ top }) => (top ? '1rem 1rem 0 0' : '0 0 1rem 1rem')};
+  border-radius: ${({ top }) => (top ? "1rem 1rem 0 0" : "0 0 1rem 1rem")};
   background: #f3faff;
   height: 1rem;
   margin: 0;
@@ -56,15 +56,15 @@ const mapEventTitle = (event, idx, events) => {
       ...event,
       eventTitle: {
         title: status,
-        subhead: eventName,
-      },
+        subhead: eventName
+      }
     };
   }
 
   const { event: prevEventName, status: prevStatus } = events[idx - 1] || {};
 
-  let title = '';
-  let subhead = '';
+  let title = "";
+  let subhead = "";
 
   if (status !== prevStatus) {
     if (eventName !== prevEventName) {
@@ -78,15 +78,15 @@ const mapEventTitle = (event, idx, events) => {
   }
 
   if (title === subhead) {
-    subhead = '';
+    subhead = "";
   }
 
   return {
     ...event,
     eventTitle: {
       title,
-      subhead,
-    },
+      subhead
+    }
   };
 };
 
@@ -115,7 +115,7 @@ const Group = ({ events, details, isFirst, isLast, isFirstGroupMajorOnly }) => {
                       />
                     );
                   }),
-                <EventBlock />,
+                <EventBlock />
               ]}
             </EventsBlock>
 
@@ -135,18 +135,6 @@ const Group = ({ events, details, isFirst, isLast, isFirstGroupMajorOnly }) => {
           isFirst={isFirst}
         />
       )}
-      {/* <ExpandButtonBlock
-        expanded={expanded}
-        setExpanded={setExpanded}
-        isFirst={isFirst}
-      /> */}
-      {/* {!isFirstGroupMajorOnly && (
-        <ExpandButtonBlock
-          expanded={expanded}
-          setExpanded={setExpanded}
-          isFirst={isFirst}
-        />
-      )} */}
       <EventsBlock>
         <EventBlock
           isFirstGroupMajorOnly={isFirstGroupMajorOnly}
