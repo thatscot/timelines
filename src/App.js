@@ -10,7 +10,8 @@ const timeline = [
         description: "Aliens stole it 2",
         event: "Aliens stole it 2",
         salesStatus: "FUTURE_SALES_STATUS",
-        status: "FUTURE_EVENT_STATUS"
+        status: "FUTURE_EVENT_STATUS",
+        isExpectedCompletionEvent: true
       }
     ],
     details: []

@@ -50,6 +50,7 @@ const EventBlock = ({
   isMajor,
   isFirst,
   isLast,
+  isExpectedCompletionEvent,
   eventTitle
 }) => {
   return (
@@ -73,6 +74,7 @@ const EventBlock = ({
         isMajor={isMajor}
         title={eventTitle?.title}
         subhead={eventTitle?.subhead}
+        isExpectedCompletionEvent={isExpectedCompletionEvent}
       />
     </>
   );
