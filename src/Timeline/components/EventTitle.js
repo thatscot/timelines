@@ -13,7 +13,7 @@ const SubheadText = styled(Text.Body)`
 `;
 
 const MajorMainTitleText = styled(Text.Subhead)`
-  margin-bottom: ${({ subhead }) => !subhead && "1rem"};
+  margin-bottom: ${({ subhead }) => !subhead ? "1rem" : "0"};
 `;
 
 const EventSubhead = ({ children, isMajor, ...props }) => (
