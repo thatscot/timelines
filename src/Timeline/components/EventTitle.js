@@ -9,11 +9,11 @@ const EventTitleContainer = styled.div`
 
 const SubheadText = styled(Text.Body)`
   font-size: 0.9rem;
-  margin-bottom: ${({ isMajor }) => !isMajor && "1rem"};
+  margin-bottom: ${({ isMajor }) => (!isMajor ? "1rem" : "0")};
 `;
 
 const MajorMainTitleText = styled(Text.Subhead)`
-  margin-bottom: ${({ subhead }) => !subhead ? "1rem" : "0"};
+  margin-bottom: ${({ subhead }) => (!subhead ? "1rem" : "0")};
 `;
 
 const EventSubhead = ({ children, isMajor, ...props }) => (

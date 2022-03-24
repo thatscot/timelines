@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const getTranslateYValue = (isMajor, showGroupUI, isFirst) => {
+const getTranslateYValue = (isMajor, isFirst) => {
   if (!isMajor && !isFirst) return "translateY(160%)";
   if (isMajor && !isFirst) return "translateY(7px)";
 
@@ -14,8 +14,7 @@ const Marker = styled.div`
   border-radius: 50%;
   align-self: center;
   background-color: #3581c6;
-  transform: ${({ isMajor, showGroupUI, isFirst }) =>
-    getTranslateYValue(isMajor, showGroupUI, isFirst)};
+  transform: ${({ isMajor, isFirst }) => getTranslateYValue(isMajor, isFirst)};
 `;
 
 export { Marker };

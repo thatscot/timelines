@@ -126,7 +126,7 @@ const Group = ({
                   .map((event, idx) => {
                     return (
                       <EventBlock
-                        showMinorEventUI={!showMinorEventUI}
+                        showMinorEventUI={showMinorEventUI}
                         {...event}
                         isFirst={isFirst && idx === 0}
                       />
@@ -154,7 +154,7 @@ const Group = ({
       )}
       <EventsBlock>
         <EventBlock
-          showMinorEventUI={!showMinorEventUI}
+          showMinorEventUI={showMinorEventUI}
           {...last(mappedEvents)}
           isLast={isLast}
           isFirst={isFirst}
