@@ -70,7 +70,7 @@ const timeline = [
         status: "REDELIVERED"
       } //major
     ],
-    details: [{ label: "Address", value: "Pie Island" }]
+    details: []
   },
   {
     events: [
@@ -100,21 +100,26 @@ const timeline = [
   }
 ]; //
 
+const isFirstGroupMajorOnly = timeline[0].events.length === 1;
+
+const shouldShowMinorEventUI = (idx, events) =>
+  !((idx === 0 && isFirstGroupMajorOnly) || events.length === 1);
+
 const App = () => {
   //should try to pass this through context instead of drilling
   // will have a go at that on a fork
-  const isFirstGroupMajorOnly = timeline[0].events.length === 1;
   return (
     <Timeline>
       {timeline.map(({ events, details }, idx) => {
         // should we just expose the EventBlocks to map them here?
-
+        const showMinorEventUI = shouldShowMinorEventUI(idx, events);
         // Add scope for prevEvents
         const prevEvents = idx >= 1 ? timeline[idx - 1].events : [];
 
         return (
           <Timeline.Group
-            isFirstGroupMajorOnly={isFirstGroupMajorOnly}
+            // isFirstGroupMajorOnly={isFirstGroupMajorOnly}
+            showMinorEventUI={showMinorEventUI}
             events={events}
             prevEvents={prevEvents}
             details={details}

@@ -104,7 +104,8 @@ const Group = ({
   details,
   isFirst,
   isLast,
-  isFirstGroupMajorOnly
+  // showMinorEventUI,
+  showMinorEventUI
 }) => {
   const [expanded, setExpanded] = useState(isFirst);
 
@@ -112,11 +113,14 @@ const Group = ({
     .map((event, idx, events) => mapDateAndTime(event, idx, events, prevEvents))
     .map(mapEventTitle);
 
+  // console.log("show group uii", showMinorEventUI);
+
+  // console.log("events lenght", events.length, "IsFIrst", isFirst);
   return (
     <>
       {expanded && (
         <>
-          {((isFirstGroupMajorOnly && !isFirst) || !isFirstGroupMajorOnly) && (
+          {showMinorEventUI && (
             <BlockBoundary top>{!isFirst && <TimelineDivider />}</BlockBoundary>
           )}
           <EventsAndDetailsBlock>
@@ -127,7 +131,7 @@ const Group = ({
                   .map((event, idx) => {
                     return (
                       <EventBlock
-                        isFirstGroupMajorOnly={isFirstGroupMajorOnly}
+                        showMinorEventUI={!showMinorEventUI}
                         {...event}
                         isFirst={isFirst && idx === 0}
                       />
@@ -139,14 +143,14 @@ const Group = ({
 
             <DetailsBlock details={details} />
           </EventsAndDetailsBlock>
-          {((isFirstGroupMajorOnly && !isFirst) || !isFirstGroupMajorOnly) && (
+          {showMinorEventUI && (
             <BlockBoundary>
               <TimelineDivider />
             </BlockBoundary>
           )}
         </>
       )}
-      {((isFirstGroupMajorOnly && !isFirst) || !isFirstGroupMajorOnly) && (
+      {showMinorEventUI && (
         <ExpandButtonBlock
           expanded={expanded}
           setExpanded={setExpanded}
@@ -155,7 +159,7 @@ const Group = ({
       )}
       <EventsBlock>
         <EventBlock
-          isFirstGroupMajorOnly={isFirstGroupMajorOnly}
+          showMinorEventUI={!showMinorEventUI}
           {...last(mappedEvents)}
           isLast={isLast}
           isFirst={isFirst}

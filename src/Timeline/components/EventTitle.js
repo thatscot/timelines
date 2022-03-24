@@ -12,6 +12,10 @@ const SubheadText = styled(Text.Body)`
   margin-bottom: ${({ isMajor }) => !isMajor && "1rem"};
 `;
 
+const MajorMainTitleText = styled(Text.Subhead)`
+  margin-bottom: ${({ subhead }) => !subhead && "1rem"};
+`;
+
 const EventSubhead = ({ children, isMajor, ...props }) => (
   <SubheadText uiWeight="standard" tag="i" uiColor="neutral.700" {...props}>
     {children}
@@ -34,7 +38,7 @@ const EventTitle = ({
   isExpectedCompletionEvent,
   ...props
 }) => {
-  const TitleComponent = isMajor ? Text.Subhead : Text.Footnote;
+  const TitleComponent = isMajor ? MajorMainTitleText : Text.Footnote;
 
   return (
     <EventTitleContainer isMajor={isMajor}>
@@ -44,6 +48,7 @@ const EventTitle = ({
             <Icon iconName="HourGlass" uiSize="micro" uiColor="neutral.700" />
           )}
           <TitleComponent
+            subhead={subhead}
             tag="span"
             uiWeight={isMajor ? "heavy" : "standard"}
             {...props}
