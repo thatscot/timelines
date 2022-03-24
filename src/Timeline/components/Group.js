@@ -104,7 +104,6 @@ const Group = ({
   details,
   isFirst,
   isLast,
-  // showMinorEventUI,
   showMinorEventUI
 }) => {
   const [expanded, setExpanded] = useState(isFirst);
@@ -112,10 +111,6 @@ const Group = ({
   const mappedEvents = events
     .map((event, idx, events) => mapDateAndTime(event, idx, events, prevEvents))
     .map(mapEventTitle);
-
-  // console.log("show group uii", showMinorEventUI);
-
-  // console.log("events lenght", events.length, "IsFIrst", isFirst);
   return (
     <>
       {expanded && (
