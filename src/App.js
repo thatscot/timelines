@@ -3,18 +3,19 @@ import { Timeline } from "./Timeline";
 import "./styles.css";
 
 const timeline = [
-  // {
-  //   events: [
-  //     {
-  //       // timestamp: "2023-01-26T13:46:42.055821Z",
-  //       description: "Aliens stole it 2",
-  //       event: "Aliens stole it 2",
-  //       salesStatus: "FUTURE_SALES_STATUS",
-  //       status: "FUTURE_EVENT_STATUS"
-  //     }
-  //   ],
-  //   details: []
-  // },
+  {
+    events: [
+      {
+        // timestamp: "2023-01-26T13:46:42.055821Z",
+        description: "Aliens stole it 2",
+        event: "Aliens stole it 2",
+        salesStatus: "FUTURE_SALES_STATUS",
+        status: "FUTURE_EVENT_STATUS",
+        isExpectedCompletionEvent: true
+      }
+    ],
+    details: []
+  },
   {
     events: [
       {
