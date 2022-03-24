@@ -22,10 +22,7 @@ const mapDateAndTime = (event, idx, events, prevEvents) => {
   const date = formatDate(event.timestamp, isMajor);
 
   // Get previous date
-  const prevDate = !!prevEvents
-    ? last(prevEvents.map(mapDateAndTime))?.date
-    : null;
-
+  const prevDate = !!prevEvents && last(prevEvents.map(mapDateAndTime))?.date;
   mappedEvent.isMajor = isMajor;
 
   if (
