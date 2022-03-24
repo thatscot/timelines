@@ -104,7 +104,7 @@ const Group = ({
   details,
   isFirst,
   isLast,
-  isFirstEventMajorOnly
+  isFirstGroupMajorOnly
 }) => {
   const [expanded, setExpanded] = useState(isFirst);
 
@@ -116,7 +116,7 @@ const Group = ({
     <>
       {expanded && (
         <>
-          {!isFirstEventMajorOnly && (
+          {((isFirstGroupMajorOnly && !isFirst) || !isFirstGroupMajorOnly) && (
             <BlockBoundary top>{!isFirst && <TimelineDivider />}</BlockBoundary>
           )}
           <EventsAndDetailsBlock>
@@ -127,7 +127,7 @@ const Group = ({
                   .map((event, idx) => {
                     return (
                       <EventBlock
-                        isFirstEventMajorOnly={isFirstEventMajorOnly}
+                        isFirstGroupMajorOnly={isFirstGroupMajorOnly}
                         {...event}
                         isFirst={isFirst && idx === 0}
                       />
@@ -139,35 +139,23 @@ const Group = ({
 
             <DetailsBlock details={details} />
           </EventsAndDetailsBlock>
-          {!isFirstEventMajorOnly && (
+          {((isFirstGroupMajorOnly && !isFirst) || !isFirstGroupMajorOnly) && (
             <BlockBoundary>
               <TimelineDivider />
             </BlockBoundary>
           )}
         </>
       )}
-      {((isFirstEventMajorOnly && !isFirst) || !isFirstEventMajorOnly) && (
+      {((isFirstGroupMajorOnly && !isFirst) || !isFirstGroupMajorOnly) && (
         <ExpandButtonBlock
           expanded={expanded}
           setExpanded={setExpanded}
           isFirst={isFirst}
         />
       )}
-      {/* <ExpandButtonBlock
-        expanded={expanded}
-        setExpanded={setExpanded}
-        isFirst={isFirst}
-      /> */}
-      {/* {!isFirstEventMajorOnly && (
-        <ExpandButtonBlock
-          expanded={expanded}
-          setExpanded={setExpanded}
-          isFirst={isFirst}
-        />
-      )} */}
       <EventsBlock>
         <EventBlock
-          // isFirstEventMajorOnly={isFirstEventMajorOnly}
+          isFirstGroupMajorOnly={isFirstGroupMajorOnly}
           {...last(mappedEvents)}
           isLast={isLast}
           isFirst={isFirst}

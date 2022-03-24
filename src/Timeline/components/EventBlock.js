@@ -46,21 +46,24 @@ const EventBlock = ({
   time,
   description,
   descriptionDetail,
-  isFirstEventMajorOnly,
+  isFirstGroupMajorOnly,
   isMajor,
   isFirst,
   isLast,
   isExpectedCompletionEvent,
   eventTitle
 }) => {
-  console.log(description);
   return (
     <>
       <Date>{date}</Date>
-      <TimelineDivider isFirst={isFirst} isLast={isLast} isMajor={isMajor}>
+      <TimelineDivider
+        isFirst={isFirst}
+        isLast={isLast}
+        isFirstGroupMajorOnly={isFirstGroupMajorOnly}
+      >
         {description && (
           <Marker
-            isFirstEventMajorOnly={isFirstEventMajorOnly}
+            isFirstGroupMajorOnly={isFirstGroupMajorOnly}
             isMajor={isMajor}
             isFirst={isFirst}
           />

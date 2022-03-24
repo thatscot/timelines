@@ -103,7 +103,7 @@ const timeline = [
 const App = () => {
   //should try to pass this through context instead of drilling
   // will have a go at that on a fork
-  const isFirstEventMajorOnly = timeline[0].events.length === 1;
+  const isFirstGroupMajorOnly = timeline[0].events.length === 1;
   return (
     <Timeline>
       {timeline.map(({ events, details }, idx) => {
@@ -114,7 +114,7 @@ const App = () => {
 
         return (
           <Timeline.Group
-            isFirstEventMajorOnly={isFirstEventMajorOnly}
+            isFirstGroupMajorOnly={isFirstGroupMajorOnly}
             events={events}
             prevEvents={prevEvents}
             details={details}
