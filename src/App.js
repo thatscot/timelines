@@ -19,6 +19,14 @@ const timeline = [
   {
     events: [
       {
+        timestamp: "2022-01-26T14:46:42.055821Z",
+        description: "Robots stole it",
+        // description: "Several things happened, and then another thing happened",
+        event: "Robots stole it",
+        salesStatus: "ACTIVE",
+        status: "PRE-ACTIVE"
+      },
+      {
         timestamp: "2022-01-26T13:46:42.055821Z",
         description: "Aliens stole it",
         // description: "Several things happened, and then another thing happened",
@@ -113,15 +121,12 @@ const App = () => {
       {timeline.map(({ events, details }, idx) => {
         // should we just expose the EventBlocks to map them here?
         const showMinorEventUI = shouldShowMinorEventUI(idx, events);
-        // Add scope for prevEvents
-        const prevEvents = idx >= 1 ? timeline[idx - 1].events : [];
 
         return (
           <Timeline.Group
             // isFirstGroupMajorOnly={isFirstGroupMajorOnly}
             showMinorEventUI={showMinorEventUI}
             events={events}
-            prevEvents={prevEvents}
             details={details}
             isFirst={idx === 0}
             isLast={idx === timeline.length - 1}
