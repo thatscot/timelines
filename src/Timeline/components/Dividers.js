@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
-const getHeight = (isFirst, isLast, isFirstGroupMajorOnly) => {
-  if (isFirst && isFirstGroupMajorOnly) return "90%";
+const getHeight = (isFirst, isLast, hideMinorEventUI) => {
+  if (isFirst && hideMinorEventUI) return "90%";
   if (isLast) return "20%";
   return "100%";
 };
@@ -13,8 +13,8 @@ const getAlignment = (isFirst, isLast) => {
 };
 
 const TimelineDivider = styled.div`
-  height: ${({ isFirst, isLast, isFirstGroupMajorOnly }) =>
-    getHeight(isFirst, isLast, isFirstGroupMajorOnly)};
+  height: ${({ isFirst, isLast, hideMinorEventUI }) =>
+    getHeight(isFirst, isLast, hideMinorEventUI)};
   width: 1px;
   align-self: ${({ isFirst, isLast }) => getAlignment(isFirst, isLast)};
   justify-self: center;

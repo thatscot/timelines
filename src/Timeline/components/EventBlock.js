@@ -45,9 +45,8 @@ const EventBlock = ({
   date,
   time,
   description,
-  descriptionDetail,
-  isFirstGroupMajorOnly,
   isMajor,
+  showMinorEventUI,
   isFirst,
   isLast,
   isExpectedCompletionEvent,
@@ -59,15 +58,9 @@ const EventBlock = ({
       <TimelineDivider
         isFirst={isFirst}
         isLast={isLast}
-        isFirstGroupMajorOnly={isFirstGroupMajorOnly}
+        hideMinorEventUI={!showMinorEventUI}
       >
-        {description && (
-          <Marker
-            isFirstGroupMajorOnly={isFirstGroupMajorOnly}
-            isMajor={isMajor}
-            isFirst={isFirst}
-          />
-        )}
+        {description && <Marker isMajor={isMajor} isFirst={isFirst} />}
       </TimelineDivider>
       <Time>{time}</Time>
       <EventTitle
