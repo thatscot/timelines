@@ -16,21 +16,15 @@ const formatTime = (timestamp) =>
 
 const last = (array) => array[array.length - 1];
 
-const mapDateAndTime = (event, idx, events, prevEvents) => {
+const mapDateAndTime = (event, idx, events) => {
   const mappedEvent = { ...event, time: formatTime(event.timestamp) };
   const isMajor = idx === events.length - 1;
   const date = formatDate(event.timestamp, isMajor);
 
-  // Get previous date
-  const prevDate = !!prevEvents && last(prevEvents.map(mapDateAndTime))?.date;
   mappedEvent.isMajor = isMajor;
 
   if (
-    !isSameDay(
-      parseISO(event.timestamp),
-      parseISO(events[idx + 1]?.timestamp)
-    ) &&
-    prevDate !== date
+    !isSameDay(parseISO(event.timestamp), parseISO(events[idx - 1]?.timestamp))
   ) {
     mappedEvent.date = date;
   }
@@ -98,19 +92,10 @@ const mapEventTitle = (event, idx, events) => {
   };
 };
 
-const Group = ({
-  events,
-  prevEvents,
-  details,
-  isFirst,
-  isLast,
-  showMinorEventUI
-}) => {
+const Group = ({ events, details, isFirst, isLast, showMinorEventUI }) => {
   const [expanded, setExpanded] = useState(isFirst);
 
-  const mappedEvents = events
-    .map((event, idx, events) => mapDateAndTime(event, idx, events, prevEvents))
-    .map(mapEventTitle);
+  const mappedEvents = events.map(mapDateAndTime).map(mapEventTitle);
   return (
     <>
       {expanded && (
